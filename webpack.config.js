@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: './index.jsx',
-    output: {path: __dirname, filename: 'bundle.js'},
+    output: {path: __dirname + '/build/', filename: 'bundle.js'},
     devtool: 'source-map',
     module: {
         loaders: [
