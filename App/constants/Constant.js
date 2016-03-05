@@ -1,3 +1,4 @@
+
 module.exports = {
     TYPE: {
         UPDATE: 'update'

@@ -1,7 +1,7 @@
-// import =====================================================================
+
 import Event        from 'events';
 import EventEmitter from 'eventemitter3'
-import Const        from '../constants/Const.js';
+import Constant     from '../constants/Constant.js';
 
 export default class Store extends Event.EventEmitter {
     constructor(props){
@@ -11,8 +11,8 @@ export default class Store extends Event.EventEmitter {
         this.dispatcher = props.dispatcher;
         this.dispatcher.register((payload)=>{
             this.pages[payload.value - 1] = 'hello react';
-            if(payload.type === Const.TYPE.UPDATE){
-                this.emit(Const.EMIT.UPDATE);
+            if(payload.type === Constant.TYPE.UPDATE){
+                this.emit(Constant.EMIT.UPDATE);
             }
         });
     }

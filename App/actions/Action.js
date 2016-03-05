@@ -1,15 +1,17 @@
 
-import ActionExec from '../actions/ActionExec.js';
-import Const      from '../constants/Const.js';
+import ActionExec from './ActionExec.js';
+import Constant   from '../constants/Constant.js';
 
 export default class Action {
     constructor(props){
         this.dispatcher = props.dispatcher;
+        this.store = props.store;
+        this.exec = new ActionExec({store: this.store});
     }
     update(eve){
-        let value = ActionExec.update();
+        let value = this.exec.update();
         this.dispatcher.dispatch({
-            type: Const.TYPE.UPDATE,
+            type: Constant.TYPE.UPDATE,
             value: value
         });
     }

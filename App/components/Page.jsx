@@ -1,7 +1,6 @@
 // import =====================================================================
 import React    from 'react';
 import ReactDOM from 'react-dom';
-import Const    from '../constants/Const.js';
 
 // default class
 export default class Page extends React.Component {
@@ -19,12 +18,14 @@ export default class Page extends React.Component {
     }
     styles(){
         return {
+            container: {
+                padding: '30px'
+            },
             page: {
                 backgroundColor: 'silver',
                 color: 'slategray',
                 lineHeight: '100px',
-                margin: '20px',
-                width: 'auto',
+                width: '100%',
                 height: '100px'
             }
         };
@@ -32,7 +33,9 @@ export default class Page extends React.Component {
     render(){
         const styles = this.styles();
         return (
-            <div style={styles.page}>{this.content}</div>
+            <div style={styles.container}>
+                <div style={styles.page}>{this.content}</div>
+            </div>
         );
     }
 }

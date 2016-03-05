@@ -1,17 +1,19 @@
-import React    from 'react';
-import ReactDOM from 'react-dom';
-import Action   from 'actions/Action.js';
-import Store    from '../stores/Store.js';
-import Const    from '../constants/Const.js';
-import Page     from './components/Page.jsx';
+
+import React      from 'react';
+import ReactDOM   from 'react-dom';
+import Flux       from 'flux';
+import Store      from './stores/Store.js';
+import Action     from './actions/Action.js';
+import Constant   from './constants/Constant.js';
+import Page       from './components/Page.jsx';
 
 export default class App extends React.Component {
     constructor(props){
         super(props);
-        dispatcher  = new Flux.Dispatcher;
-        this.action = new Action({dispatcher: dispatcher, props: props});
-        this.store  = new Store({dispatcher: dispatcher, props: props});
-        this.state  = {
+        var dispatcher = new Flux.Dispatcher();
+        this.store     = new Store({dispatcher: dispatcher, props: props});
+        this.action    = new Action({dispatcher: dispatcher, store: this.store, props: props});
+        this.state     = {
             activePage: this.store.getActivePage(),
             pageCount: this.store.getPageCount(),
             pages: this.store.getAllPages()
@@ -19,17 +21,21 @@ export default class App extends React.Component {
 
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
+        this.onClick = this.onClick.bind(this);
         this.update = this.update.bind(this);
     }
     componentDidMount(){
-        this.store.on(Const.EMIT.UPDATE, this.update);
+        this.store.on(Constant.EMIT.UPDATE, this.update);
     }
     componentWillUnmount(){
-        this.store.removeListener(Const.EMIT.UPDATE, this.update);
+        this.store.removeListener(Constant.EMIT.UPDATE, this.update);
     }
-    update(){
+    onClick(eve){
         eve.preventDefault();
         eve.stopPropagation();
+        this.action.update(eve);
+    }
+    update(){
         this.setState({activePage: this.store.getActivePage()});
     }
     styles(){
@@ -43,13 +49,13 @@ export default class App extends React.Component {
     }
     render(){
         const styles = this.styles();
-        generator(value, key)=>{
+        var generator = ((value, key)=>{
             return (
                 <Page action={this.action} store={this.store} key={key} content={value} />
             );
-        }
+        }).bind(this);
         return (
-            <div style={styles.app}>
+            <div style={styles.app} onClick={this.onClick}>
                 {this.state.pages.map(generator)}
             </div>
         );
