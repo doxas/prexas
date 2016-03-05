@@ -10,8 +10,10 @@
     "babel-preset-react": "^6.5.0",
     "eventemitter3": "^1.1.1",
     "flux": "^2.1.1",
+    "json-loader": "^0.5.4",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-markdown": "^2.0.1",
     "superagent": "^1.7.1",
     "webpack": "^1.12.11",
     "webpack-dev-server": "^1.14.1"

@@ -10,7 +10,7 @@ export default class Store extends Event.EventEmitter {
         this.activePage = 0;
         this.dispatcher = props.dispatcher;
         this.dispatcher.register((payload)=>{
-            this.pages[payload.value - 1] = 'hello react';
+            this.pages[payload.value - 1] = '# test1\n\n## test2\n\ntest content';
             if(payload.type === Constant.TYPE.UPDATE){
                 this.emit(Constant.EMIT.UPDATE);
             }

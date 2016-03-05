@@ -5,7 +5,7 @@ import Flux       from 'flux';
 import Store      from './stores/Store.js';
 import Action     from './actions/Action.js';
 import Constant   from './constants/Constant.js';
-import Page       from './components/Page.jsx';
+import Page       from './components/Page';
 
 export default class App extends React.Component {
     constructor(props){

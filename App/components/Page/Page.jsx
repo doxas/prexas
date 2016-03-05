@@ -1,8 +1,8 @@
-// import =====================================================================
+
 import React    from 'react';
 import ReactDOM from 'react-dom';
+import Markdown from 'react-markdown';
 
-// default class
 export default class Page extends React.Component {
     constructor(props){
         super(props);
@@ -34,7 +34,9 @@ export default class Page extends React.Component {
         const styles = this.styles();
         return (
             <div style={styles.container}>
-                <div style={styles.page}>{this.content}</div>
+                <div style={styles.page}>
+                    <Markdown source={this.content}/>
+                </div>
             </div>
         );
     }
