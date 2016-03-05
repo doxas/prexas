@@ -1,5 +1,13 @@
-module.exports = {
-    parse: function(md){
+
+import Store from '../stores/Store.js';
+
+export default class ActionExec {
+    update(){
+        let len = Store.getPageCount();
+        return ++len;
+    }
+
+    parse(md){
         var i, j, k, l;
         var tag, content, source, dest, page;
         if(md == null || typeof md !== 'string'){return null;}
@@ -111,4 +119,5 @@ module.exports = {
         dest[dest.length] = '</div>\n';
         return '\n<div class="page">\n' + dest.join('') + '\n';
     }
-};
+}
+
